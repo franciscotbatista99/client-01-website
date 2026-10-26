@@ -1,7 +1,6 @@
-"""Produktcheck für CUST-001 (Termin 3): AC-01, AC-04 und eine Leistung aus AC-02.
+"""Tests for initial tasks of client 1 website
 
-Läuft ohne Factory, LLM oder Datenbank:  python3 -m pytest tests -q
-Prüft nur statisches HTML mit der Python-Standardbibliothek.
+To run tests:  python3 -m pytest tests -q
 """
 
 from __future__ import annotations
@@ -15,16 +14,12 @@ import pytest
 SITE = Path(__file__).resolve().parents[1] / "site"
 INDEX = SITE / "index.html"
 
-N01 = "Nordwerk Industrie-Service"
-N02 = "Praktische Unterstützung für Ihren technischen Betrieb."
-SERVICES = {
-    "Wartungsplanung": "Wir strukturieren Wartungsaufgaben und dokumentieren Zuständigkeiten für kleine technische Betriebe.",
-    "Ersatzteilkoordination": "Wir unterstützen bei der Abstimmung von Ersatzteilbedarfen und Lieferterminen.",
-    "Betriebsdokumentation": "Wir bringen technische Unterlagen in eine nachvollziehbare und nutzbare Struktur.",
-}
+COMPANY_NAME = "Nordwerk Industrie-Service"
+MAIN_STATEMENT = "Praktische Unterstützung für Ihren technischen Betrieb."
+FIRST_SERVICE = {"Wartungsplanung": "Wir strukturieren Wartungsaufgaben und dokumentieren Zuständigkeiten für kleine technische Betriebe."}
 MAILTO = "mailto:kontakt@nordwerk.example"
 LINK_TEXT = "Anfrage stellen"
-N09 = "Fiktives Unternehmen – Lehrprojekt der HAW Hamburg. Keine realen Angebote oder Kontaktaufnahme."
+COURSE_NOTICE = "Fiktives Unternehmen – Lehrprojekt der HAW Hamburg. Keine realen Angebote oder Kontaktaufnahme."
 
 
 def norm(text: str) -> str:
@@ -97,34 +92,30 @@ def page() -> Page:
     return p
 
 
-# AC-01 -----------------------------------------------------------------------
-def test_ac01_company_name_is_main_heading(page):
-    assert N01 in page.headings.get("h1", []), "Firmenname (N-01) muss als <h1> erscheinen"
+def test_company_name_is_main_heading(page):
+    assert COMPANY_NAME in page.headings.get("h1", []), "Firmenname (N-01) muss als <h1> erscheinen"
 
 
-def test_ac01_claim_is_visible(page):
-    assert N02 in page.body_text, "Hauptaussage (N-02) fehlt"
+def test_claim_is_visible(page):
+    assert MAIN_STATEMENT in page.body_text, "Hauptaussage (N-02) fehlt"
 
 
-# AC-02 (Tagesumfang T3: mindestens eine Leistung mit Pflichttext) -----------------
-def test_ac02_at_least_one_service_with_required_text(page):
-    found = [name for name, text in SERVICES.items()
+def test_at_least_one_service_with_required_text(page):
+    found = [name for name, text in FIRST_SERVICE.items()
              if name in page.headings.get("h3", []) and text in page.body_text]
     assert found, "Mindestens eine Leistung (N-03..N-05) mit <h3> und Pflichttext fehlt"
 
 
-# AC-04 -----------------------------------------------------------------------
-def test_ac04_contact_link_targets_mailto(page):
+def test_contact_link_targets_mailto(page):
     matches = [l for l in page.links if l["text"] == LINK_TEXT]
     assert matches, f'Link mit Text "{LINK_TEXT}" fehlt'
     assert all(l["href"] == MAILTO for l in matches), f"Kontaktlink muss auf {MAILTO} zeigen"
 
 
-def test_ac04_exercise_notice_is_visible(page):
-    assert N09 in page.body_text, "Übungshinweis (N-09) fehlt"
+def test_exercise_notice_is_visible(page):
+    assert COURSE_NOTICE in page.body_text, "Übungshinweis (N-09) fehlt"
 
 
-# Basis (Vorbereitung T4, kein Tagespflichtkriterium) ------------------------------
 def test_document_language_and_title(page):
     assert page.lang == "de"
     assert page.title
