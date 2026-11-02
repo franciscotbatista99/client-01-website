@@ -10,7 +10,7 @@
 
 * { box-sizing: border-box; }
 
-html { font-size: 100%; }
+html { font-size: 100%; scroll-behavior: smooth; }
 
 body {
   margin: 0;
@@ -22,17 +22,39 @@ body {
 }
 
 .site-header,
+.site-nav,
 main,
 .site-footer {
   max-width: 60rem;
   margin: 0 auto;
-  padding: 1.5rem 1rem;
+  padding: 1rem 1.25rem;
 }
 
-.site-header { padding-top: 3rem; }
+.site-header { padding-top: 2rem; }
+
+/* Navigation Styling (AC-05) */
+.site-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  background: var(--surface);
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+}
+
+.site-nav a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.site-nav a:hover { text-decoration: underline; }
 
 h1 { font-size: clamp(1.75rem, 5vw, 2.75rem); margin: 0 0 0.5rem; line-height: 1.2; }
-h2 { font-size: 1.5rem; margin: 2rem 0 1rem; }
+h2 { font-size: 1.5rem; margin: 2rem 0 1rem; border-bottom: 2px solid var(--surface); padding-bottom: 0.3rem; }
 h3 { font-size: 1.15rem; margin: 0 0 0.4rem; }
 
 .claim { font-size: 1.2rem; color: var(--muted); margin: 0; }
@@ -53,13 +75,27 @@ h3 { font-size: 1.15rem; margin: 0 0 0.4rem; }
   border-radius: 6px;
   text-decoration: none;
   font-weight: 600;
+  margin-top: 0.5rem;
 }
 .contact-link:hover { text-decoration: underline; }
 
-a:focus-visible {
+/* Keyboard Focus (AC-07) */
+a:focus-visible, button:focus-visible {
   outline: 3px solid var(--focus);
   outline-offset: 3px;
 }
 
-.site-footer { border-top: 1px solid var(--surface); }
+.site-footer { border-top: 1px solid var(--surface); margin-top: 2rem; }
 .notice { font-size: 0.95rem; color: var(--muted); margin: 0; }
+
+/* Mobile Viewport / 375px Check (AC-06) */
+@media (max-width: 480px) {
+  body { font-size: 95%; }
+  .site-nav ul {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .site-header, .site-nav, main, .site-footer {
+    padding: 0.75rem;
+  }
+}
