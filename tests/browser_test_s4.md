@@ -1,5 +1,10 @@
 ## Browser Review - Manual Test
 
+Reviewer: Francisco
+Reviewed commit: rc-1 (cdbcba6)
+Date (UTC): 2026-11-02 ~12:00
+Browser: <Chrome>
+
 Additionally inspect 375/1280 px layouts and keyboard navigation/focus in a browser, recording results and reviewer.
 
 Reviewer: 
