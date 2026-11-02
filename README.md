@@ -27,3 +27,12 @@ Kontaktlink `mailto:kontakt@nordwerk.example` und Übungshinweis, außerdem Spra
 | `site/` | Website |
 | `tests/` | Produkttests |
 | `docs/` | Klärungen, Abnahme, Lieferbericht |
+
+## AC-08: Fresh Checkout Instructions
+
+To perform a fresh checkout and run the project from scratch:
+
+1. **Clone the repository:**
+   ```bash
+   git clone [https://github.com/franciscotbatista99/client-01-website.git](https://github.com/franciscotbatista99/client-01-website.git)
+   cd client-01-website

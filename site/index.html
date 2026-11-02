@@ -7,24 +7,64 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header class="site-header">
-    <h1>Nordwerk Industrie-Service</h1><p class="claim">Praktische Unterstützung für Ihren technischen Betrieb.</p>
-  </header>
+<!-- Bereiche zwischen AGENT-Markierungen werden von der Factory (web-implementer-agent) befüllt.
+     Struktur, Markierungen und alles außerhalb davon werden von Menschen gepflegt. -->
+<header class="site-header">
+  <!-- AGENT:header -->
+  <h1>Nordwerk Industrie-Service</h1>
+  <p class="claim">Praktische Unterstützung für Ihren technischen Betrieb.</p>
+  <!-- /AGENT:header -->
+</header>
 
-  <main>
-    <section id="leistungen" aria-labelledby="leistungen-titel">
-      <h2 id="leistungen-titel">Leistungen</h2>
-    <article class="service"><h3>Wartungsplanung</h3><p>Wir strukturieren Wartungsaufgaben und dokumentieren Zuständigkeiten für kleine technische Betriebe.</p></article>
-    </section>
+<nav aria-label="Hauptnavigation" class="site-nav">
+  <!-- AGENT:nav -->
+  <ul>
+    <li><a href="#leistungen">Leistungen</a></li>
+    <li><a href="#zielgruppen">Zielgruppen</a></li>
+    <li><a href="#arbeitsweise">Arbeitsweise</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+  </ul>
+  <!-- /AGENT:nav -->
+</nav>
 
-    <section id="kontakt" aria-labelledby="kontakt-titel">
-      <h2 id="kontakt-titel">Kontakt</h2>
-    <p>Bei Fragen können Sie uns gerne kontaktieren.</p><a class="contact-link" href="mailto:kontakt@nordwerk.example">Anfrage stellen</a>
-    </section>
-  </main>
+<main>
+  <section id="leistungen" aria-labelledby="leistungen-titel">
+    <h2 id="leistungen-titel">Leistungen</h2>
+    <!-- AGENT:services -->
+    <article class="service">
+      <h3>Wartungsplanung</h3>
+      <p>Wir strukturieren Wartungsaufgaben und dokumentieren Zuständigkeiten für kleine technische Betriebe.</p>
+    </article>
+    <!-- /AGENT:services -->
+  </section>
 
-  <footer class="site-footer">
-    <p class="notice">Fiktives Unternehmen – Lehrprojekt der HAW Hamburg. Keine realen Angebote oder Kontaktaufnahme.</p>
-  </footer>
+  <section id="zielgruppen" aria-labelledby="zielgruppen-titel">
+    <h2 id="zielgruppen-titel">Zielgruppen</h2>
+    <!-- AGENT:audiences -->
+    <p>Kleine Produktionsbetriebe und Technische Serviceunternehmen</p>
+    <!-- /AGENT:audiences -->
+  </section>
+
+  <section id="arbeitsweise" aria-labelledby="arbeitsweise-titel">
+    <h2 id="arbeitsweise-titel">Arbeitsweise</h2>
+    <!-- AGENT:approach -->
+    <p>Ein fester Ansprechpartner, ein gemeinsam vereinbarter Leistungsumfang und nachvollziehbare Ergebnisse.</p>
+    <!-- /AGENT:approach -->
+  </section>
+
+  <section id="kontakt" aria-labelledby="kontakt-titel">
+    <h2 id="kontakt-titel">Kontakt</h2>
+    <!-- AGENT:contact -->
+    <p>Bei Fragen können Sie uns gerne kontaktieren.</p>
+    <a class="contact-link" href="mailto:kontakt@nordwerk.example">Anfrage stellen</a>
+    <!-- /AGENT:contact -->
+  </section>
+</main>
+
+<footer class="site-footer">
+  <!-- AGENT:footer -->
+  <p class="notice">Fiktives Unternehmen – Lehrprojekt der HAW Hamburg. Keine realen Angebote oder Kontaktaufnahme.</p>
+  <!-- /AGENT:footer -->
+</footer>
 </body>
 </html>
