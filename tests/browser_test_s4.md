@@ -7,11 +7,11 @@ Reviewer:
 ### At 375/1280 px browser layouts
 | Width (px)  | No horizontal Content Overflow | Contact link is still usable | Services and other text still seen |
 | ----------- |          :---------:           |         :---------:          |            :---------:             |
-| 375         | [ ]                            | [ ]                          | [ ]                                |
-| 1280        | [ ]                            | [ ]                          | [ ]                                |
+| 375         | [X]                            | [X]                          | [X]                                |
+| 1280        | [X]                            | [X]                          | [X]                                |
 
 ### Keyboard navigation/focus in a browser
-- [ ] There is keyboard focus for every element
-- [ ] There are keyboard focus indicators for every element
-- [ ] The navigation order is logical and intuitive
-- [ ] The contact link can be activated
+- [X] There is keyboard focus for every element
+- [X] There are keyboard focus indicators for every element
+- [X] The navigation order is logical and intuitive
+- [X] The contact link can be activated
