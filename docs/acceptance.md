@@ -1,3 +1,48 @@
+# Acceptance checklist – Release v1.0 (Session 5: CR-01 + SR-01)
+
+| | |
+|---|---|
+| Candidate | `main` → tag `v1.0` (commit: TODO after tagging) |
+| Baseline | `rc-1` (`cdbcba6`), S4 release candidate |
+| CR-01 Factory runs | DE `TODO` · EN `TODO` (Factory `runs/website-01-cr01-de/…`, `runs/website-01-cr01-en/…`), gate: TODO, review PR #21 |
+| Final check on the release state | Factory `--verify-only` run `2fb2d0dd-e75f-45b9-b0cc-2c8512b34212` on `3fa2424`: 40 passed / 0 failed, approved by Fatih (2026-11-09 ≈ 12:58 UTC), `release_status: released`, artifact sha256 `33373692…` |
+| Product checks | `python3 -m pytest tests -q` → 44 passed (`test_site.py` 23 = AC-01–08 regression, `test_cr01_en.py` 17, `test_cr01_de.py` 4) |
+| Browser review | Fatih, 2026-11-09 13:55–13:57 local, both views at 375/1280 px + keyboard |
+
+| AC | Automated product check | Manual evidence | Result |
+|---|---|---|---|
+| AC-01 Company name + main statement | `test_ac01_*` (DE), `test_cr01_en_company_name_*`, `test_cr01_en_main_statement_*` | browser review | pass |
+| AC-02 Three services with text | `test_ac02_*` | – | pass |
+| AC-03 Target groups, approach, no invented promises | `test_ac03_*`, `test_cr01_de_*_target_group*`, `test_cr01_en_no_invented_numbers`, `test_cr01_en_only_required_texts` | browser review | pass |
+| AC-04 Contact link + course notice | `test_ac04_*`, `test_cr01_en_contact_*`, `test_cr01_en_notice_*` | contact link usable in both views | pass |
+| AC-05 Navigation, internal links, local assets | `test_ac05_*`, `test_cr01_en_internal_anchors_*`, `test_cr01_en_local_links_*` | nav + language switch DE ↔ EN work | pass |
+| AC-06 No overflow at 375/1280 px | `test_ac06_*` (heuristic), `test_cr01_en_viewport_meta_present` | browser review both views | pass |
+| AC-07 Title, lang, headings, focus | `test_ac07_*`, `test_cr01_en_language_and_title`, `test_cr01_en_exactly_one_h1_*` | keyboard/focus both views | pass |
+| AC-08 Fresh checkout starts without Factory | `test_ac08_*` | fresh checkout record below | pass |
+| AC-09 CR-01 met, German content/nav/contact still work | `test_cr01_en.py` (17), `test_cr01_de.py` (4), AC-01–08 regression green | browser review both views, language switch both directions | pass – minor defect: on `en.html` each service name is repeated as its description and "Request information" appears as text and as link (no factual change, open) |
+| AC-10 Component inventory, SR-01 response, recorded customer acceptance | – | `docs/phpSecurityConsiderations.md` (response + inventory, sources accessed 09/11/2026); fact check/approval: TODO | TODO |
+
+## Approval
+
+- **Technical approval (team):** TODO name, TODO time – release `v1.0`
+- **Customer acceptance (instructor, Prof. Clemen):** TODO – accepted / accepted with outstanding defects / pending. Not self-declared by the team.
+- Outstanding defects: EN service descriptions duplicate the service names (cosmetic); TODO further
+
+## Fresh checkout record (AC-08, S5)
+
+- By: Fatih, 2026-11-09 13:55 local (12:55 UTC), new clone in `/tmp/fresh-s5`, commit `3fa2424`
+- Commands:
+  ```
+  git clone https://github.com/franciscotbatista99/client-01-website.git fresh-s5
+  cd fresh-s5
+  python -m pytest tests -q                     → 40 passed
+  python3 -m http.server 8010 --directory site  → index.html, en.html, styles.css: 200
+  ```
+- Language switch DE → EN → DE works; no Factory, no LLM, no database running: confirmed
+- (`test_cr01_de.py` added afterwards: 44 passed)
+
+---
+
 # Acceptance checklist – Release Candidate rc-1 (CUST-002, Session 4)
 
 | | |
