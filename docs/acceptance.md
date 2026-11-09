@@ -2,9 +2,9 @@
 
 | | |
 |---|---|
-| Candidate | `main` → tag `v1.0` (commit: TODO after tagging) |
+| Candidate | `main` after merging this checklist → tag `v1.0` (`git rev-parse v1.0`) |
 | Baseline | `rc-1` (`cdbcba6`), S4 release candidate |
-| CR-01 Factory runs | DE `TODO` · EN `TODO` (Factory `runs/website-01-cr01-de/…`, `runs/website-01-cr01-en/…`), gate: TODO, review PR #21 |
+| CR-01 Factory runs | DE and EN runs by Daniil (configs `projects/website-01-cr01-de.json`, `website-01-cr01-en.json`); run IDs, gate decisions and raw data in the Factory repo (`evidence/session-05.md`, `runs/website-01-cr01-*`); product change merged via PR #21 (`066f72c`) |
 | Final check on the release state | Factory `--verify-only` run `2fb2d0dd-e75f-45b9-b0cc-2c8512b34212` on `3fa2424`: 40 passed / 0 failed, approved by Fatih (2026-11-09 ≈ 12:58 UTC), `release_status: released`, artifact sha256 `33373692…` |
 | Product checks | `python3 -m pytest tests -q` → 44 passed (`test_site.py` 23 = AC-01–08 regression, `test_cr01_en.py` 17, `test_cr01_de.py` 4) |
 | Browser review | Fatih, 2026-11-09 13:55–13:57 local, both views at 375/1280 px + keyboard |
@@ -20,13 +20,13 @@
 | AC-07 Title, lang, headings, focus | `test_ac07_*`, `test_cr01_en_language_and_title`, `test_cr01_en_exactly_one_h1_*` | keyboard/focus both views | pass |
 | AC-08 Fresh checkout starts without Factory | `test_ac08_*` | fresh checkout record below | pass |
 | AC-09 CR-01 met, German content/nav/contact still work | `test_cr01_en.py` (17), `test_cr01_de.py` (4), AC-01–08 regression green | browser review both views, language switch both directions | pass – minor defect: on `en.html` each service name is repeated as its description and "Request information" appears as text and as link (no factual change, open) |
-| AC-10 Component inventory, SR-01 response, recorded customer acceptance | – | `docs/phpSecurityConsiderations.md` (response + inventory, sources accessed 09/11/2026); fact check/approval: TODO | TODO |
+| AC-10 Component inventory, SR-01 response, recorded customer acceptance | – | `docs/phpSecurityConsiderations.md` (response + component inventory, sources accessed 09/11/2026), prepared and fact-checked by Rafael and Caitlin (no independent second check); customer acceptance by the instructor, see below | pass |
 
 ## Approval
 
-- **Technical approval (team):** TODO name, TODO time – release `v1.0`
-- **Customer acceptance (instructor, Prof. Clemen):** TODO – accepted / accepted with outstanding defects / pending. Not self-declared by the team.
-- Outstanding defects: EN service descriptions duplicate the service names (cosmetic); TODO further
+- **Technical approval (team):** Fatih, 2026-11-09 14:05 local – based on the final regression (`--verify-only` run `2fb2d0dd`, 44 product checks green), fresh checkout and browser review above; release `v1.0`
+- **Customer acceptance (instructor, Prof. Clemen):** accepted, 2026-11-09 ≈ 13:40 local (recorded by the team as communicated; the decision was given on the state presented at that time, before PR #21 was merged at 13:47).
+- Outstanding defects: on `en.html` the service descriptions repeat the service names and "Request information" appears as text and as link (cosmetic, no factual change). No further defects recorded.
 
 ## Fresh checkout record (AC-08, S5)
 
